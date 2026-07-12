@@ -43,7 +43,7 @@ const  securityMiddleware = async (req: Request, res: Response, next: NextFuncti
             socket: { remoteAddress: req.socket.remoteAddress ?? req.ip ?? '0.0.0.0'},
         }
 
-        const decision = await client.protect(arcjectRequest);
+        const decision = await client.protect(arcjetRequest);
 
         if(decision.isDenied() && decision.reason.isBot()) {
             return res.status(403).json({error: 'Forbidden', message: 'Automated request are not allowed. '});
@@ -54,7 +54,7 @@ const  securityMiddleware = async (req: Request, res: Response, next: NextFuncti
         }
 
         if(decision.isDenied() && decision.reason.isRateLimit()) {
-            return res.status(403).json({error: 'Too many requests.', message });
+            return res.status(429).json({error: 'Too many requests.', message });
         }
 
         next();
