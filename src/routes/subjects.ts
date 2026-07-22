@@ -1,7 +1,7 @@
 import express from "express";
 import {and, desc, eq, getTableColumns, ilike, or, sql} from "drizzle-orm";
-import {departments, subjects} from "../db/schema";
-import { db} from "../db";
+import {departments, subjects} from "../db/schema/index.js";
+import { db} from "../db/index.js";
 
 const router = express.Router();
 
@@ -47,9 +47,9 @@ router.get("/", async (req, res) =>{
 
         const subjectsList = await db
             .select({
-            ...getTableColumns(subjects),
-            department: { ...getTableColumns(departments)}
-        }).from(subjects).leftJoin(departments, eq(subjects.departmentId, departments.id))
+                ...getTableColumns(subjects),
+                department: { ...getTableColumns(departments)}
+            }).from(subjects).leftJoin(departments, eq(subjects.departmentId, departments.id))
             .where(whereClause)
             .orderBy(desc(subjects.createdAt))
             .limit(limitPerPage)

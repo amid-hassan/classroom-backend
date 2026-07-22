@@ -27,7 +27,7 @@
     /* Performance */
     "skipLibCheck": true,
 
-    /* Environment types */
+    /* Environment types*/
     "types": ["node"]
   },
   "include": ["src"]
