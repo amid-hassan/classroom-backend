@@ -9,7 +9,7 @@ import {toNodeHandler} from "better-auth/node";
 import {auth} from "./lib/auth";
 
 const app = express();
-const port = 8000;
+const port = process.env.PORT || 8000;
 
 if(!process.env.FRONTEND_URL) throw new Error('FRONTEND_URL is not set in .env file');
 

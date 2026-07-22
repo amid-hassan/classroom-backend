@@ -2,7 +2,6 @@ import type {Request, Response, NextFunction} from "express";
 import {ArcjetNodeRequest, ArcjetRateLimitReason, slidingWindow} from "@arcjet/node";
 import aj from "../config/arcjet.js";
 
-
 const  securityMiddleware = async (req: Request, res: Response, next: NextFunction) => {
     if(process.env.NODE_ENV === 'test') return next();
 
